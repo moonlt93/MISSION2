@@ -7,8 +7,14 @@ import lombok.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
-public class UseBalance {
-
+public class CancelBalance {
+    /**
+     * {
+     *   "transactionId": "wefsdf",
+     *   "accountNumber": 1000
+     *   "amount": 1000
+     * }
+     */
 
 
     @Setter
@@ -16,11 +22,11 @@ public class UseBalance {
     @AllArgsConstructor
     //innerclass네?
     public static class Request implements AccountLockIdInterface {
-        @NotNull
-        @Min(1)
-        private Long userId;
 
         @NotBlank
+        private String transactionId;
+
+        @NotNull
         @Size(min =10, max =10)
         private String accountNumber;
 
@@ -28,8 +34,6 @@ public class UseBalance {
         @Min(10)
         @Max(1000_000_000)
         private Long amount;
-
-
 
     }
 
@@ -47,8 +51,8 @@ public class UseBalance {
         private LocalDateTime transactedAt;
 
 
-        public static Response from(TransactionDto transactionDto) {
-            return Response.builder()
+        public static CancelBalance.Response from(TransactionDto transactionDto) {
+            return CancelBalance.Response.builder()
                     .accountNumber(transactionDto.getAccountNumber())
                     .transactionResult(transactionDto.getTransactionResultType())
                     .transactionId(transactionDto.getTransactionId())
@@ -57,6 +61,4 @@ public class UseBalance {
                     .build();
         }
     }
-
-
 }

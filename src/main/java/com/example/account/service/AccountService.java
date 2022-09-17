@@ -24,28 +24,27 @@ import static com.example.account.type.AccountStatus.IN_USE;
 public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountUserRepository accountUserRepository;
+
     /**
-     *        //사용자가 있는지 조회
-     *         // 계좌의 번호를 생성하고
-     *         // 계좌를 저장하고, 그정보를 넘긴다.
-     *     / ** enter하면 만들어짐.
-     *
+     * //사용자가 있는지 조회
+     * // 계좌의 번호를 생성하고
+     * // 계좌를 저장하고, 그정보를 넘긴다.
+     * / ** enter하면 만들어짐.
      */
     @Transactional
     public AccountDto createAccount(Long userId, Long initialBalance) {
-        AccountUser accountUser = accountUserRepository.findById(userId)
-                .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
+        AccountUser accountUser = getAccountUser(userId);
 
         validateCreateAccount(accountUser);
         //max 10개 제한 막는 로직
 
 
         String newAccountNumber = accountRepository.findFirstByOrderByIdDesc()
-                .map(account -> (Integer.parseInt(account.getAccountNumber()))+1+ "")
+                .map(account -> (Integer.parseInt(account.getAccountNumber())) + 1 + "")
                 // 가장 최근 계좌 -> number를 받아서 문자를 숫자로 변환 해서 1을 더해주고, 다시 String으로 변환
                 .orElse("1000000000");
-                //현재 계좌가 없으면....
-                //optional 사용해보기
+        //현재 계좌가 없으면....
+        //optional 사용해보기
         return AccountDto.fromEntity(
                 accountRepository.save(
                         Account.builder()
@@ -58,45 +57,33 @@ public class AccountService {
                                 .build()
                 )
         );
-          /*      Account savedAccount = accountRepository.save(
-                Account.builder()
-                        .accountUser(accountUser)
-                        .accountStatus(IN_USE)
-                        //static import enum namespace 굳이 볼필요 없으니깐
-                        .accountNumber(newAccountNumber)
-                        .balance(initialBalance)
-                        .registeredAt(LocalDateTime.now())
-                        .build()
-        );*/
     }
 
+
     private void validateCreateAccount(AccountUser accountUser) {
-        if(accountRepository.countByAccountUser(accountUser) == 10){
+        if (accountRepository.countByAccountUser(accountUser) == 10) {
             throw new AccountException(ErrorCode.MAX_ACCOUNT_PER_USER_10);
         }
     }
 
 
-
-
     @Transactional
     public Account getAccount(Long id) {
-        if(id < 0){
+        if (id < 0) {
             throw new RuntimeException("Minus");
         }
         return accountRepository.findById(id).get();
     }
 
 
-    public AccountDto deleteAccount(Long userId, String accountNumber){
-        AccountUser accountUser = accountUserRepository.findById(userId)
-                .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
+    public AccountDto deleteAccount(Long userId, String accountNumber) {
+        AccountUser accountUser = getAccountUser(userId);
 
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountException(ErrorCode.ACCOUNT_NOT_FOUND));
 
-        validateDeleteAccount(accountUser,account);
-        validateDeleteAccount(accountUser,account);
+        validateDeleteAccount(accountUser, account);
+        validateDeleteAccount(accountUser, account);
 
         account.setAccountStatus(AccountStatus.UNREGISTERED);
         account.setUnRegisteredAt(LocalDateTime.now());
@@ -104,26 +91,25 @@ public class AccountService {
 
         accountRepository.save(account);
 
-     return AccountDto.fromEntity(account);
+        return AccountDto.fromEntity(account);
     }
 
     private void validateDeleteAccount(AccountUser accountUser, Account account) {
 
-    if(!Objects.equals(accountUser.getId(), account.getAccountUser().getId())){
-        throw new AccountException(ErrorCode.USER_ACCOUNT_UN_MATCH);
-    }
-    if(account.getAccountStatus() == AccountStatus.UNREGISTERED){
-        throw new AccountException(ErrorCode.ACCOUNT_ALREADY_UNREGISTERED);
-    }
-    if(account.getBalance() >0){
-        throw new AccountException(ErrorCode.BALANCE_NOT_EMPTY);
-    }
+        if (!Objects.equals(accountUser.getId(), account.getAccountUser().getId())) {
+            throw new AccountException(ErrorCode.USER_ACCOUNT_UN_MATCH);
+        }
+        if (account.getAccountStatus() == AccountStatus.UNREGISTERED) {
+            throw new AccountException(ErrorCode.ACCOUNT_ALREADY_UNREGISTERED);
+        }
+        if (account.getBalance() > 0) {
+            throw new AccountException(ErrorCode.BALANCE_NOT_EMPTY);
+        }
     }
 
     @Transactional
     public List<AccountDto> getAccountsByUserId(Long userId) {
-        AccountUser accountUser = accountUserRepository.findById(userId)
-                .orElseThrow( () -> new AccountException(ErrorCode.USER_NOT_FOUND));
+        AccountUser accountUser = getAccountUser(userId);
 
         List<Account> accounts = accountRepository.findByAccountUser(accountUser);
 
@@ -133,7 +119,14 @@ public class AccountService {
                 .collect(Collectors.toList());
 
         //fromEntity 메소드 역활 뭔지 보기, 쟤 덕분에 map에 넣을수 있음.
-
-
     }
+
+
+    private AccountUser getAccountUser(Long userId) {
+        AccountUser accountUser = accountUserRepository.findById(userId)
+                .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
+        return accountUser;
+    }
+
+
 }
