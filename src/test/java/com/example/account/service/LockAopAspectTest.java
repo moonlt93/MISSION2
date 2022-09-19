@@ -15,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @ExtendWith(MockitoExtension.class)
 class LockAopAspectTest {
 

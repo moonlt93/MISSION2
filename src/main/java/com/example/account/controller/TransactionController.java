@@ -19,7 +19,10 @@ import javax.validation.Valid;
  * 2) 잔액 사용 취소
  * 3) 거래 확인
  */
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -46,7 +49,6 @@ public class TransactionController {
                     request.getAmount()
             );
             throw e;
-            //어떤 에러가 났는지 알려줄수 있게 처리
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -72,7 +74,6 @@ public class TransactionController {
                     request.getAmount()
             );
             throw e;
-            //어떤 에러가 났는지 알려줄수 있게 처리
         }
     }
 

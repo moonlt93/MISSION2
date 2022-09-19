@@ -7,6 +7,11 @@ import lombok.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
+
 public class UseBalance {
 
 

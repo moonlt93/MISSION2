@@ -10,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Getter
 @Setter
 @Builder(builderMethodName = "doesNotUseThisBuilder")

@@ -27,7 +27,6 @@ public class LockService {
 
             }
         }catch (AccountException e) {
-            // 커스텀 EXCEPTION이므로 따로 먼저 돈 후 , 처리될수 있게 한다.
          throw e;
         }  catch (Exception e) {
             log.error("Redis lock failed",e);

@@ -4,7 +4,10 @@ import com.example.account.domain.Account;
 import lombok.*;
 
 import java.time.LocalDateTime;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor

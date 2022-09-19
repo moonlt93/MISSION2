@@ -6,7 +6,10 @@ import lombok.*;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 public class CancelBalance {
 
     @Setter
@@ -33,7 +36,7 @@ public class CancelBalance {
     @Builder
     @Setter
     @Getter
-    //innerclass네?
+
     public static class Response {
         private String accountNumber;
         private TransactionResultType transactionResult;

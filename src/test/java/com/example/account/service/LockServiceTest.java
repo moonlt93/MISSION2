@@ -13,7 +13,10 @@ import org.redisson.api.RedissonClient;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @ExtendWith(MockitoExtension.class)
 class LockServiceTest {
 

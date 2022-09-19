@@ -4,13 +4,14 @@ package com.example.account.domain;
 import com.example.account.type.TransactionResultType;
 import com.example.account.type.TransactionType;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor

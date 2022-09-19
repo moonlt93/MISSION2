@@ -28,7 +28,10 @@ import static com.example.account.type.TransactionResultType.F;
 import static com.example.account.type.TransactionResultType.S;
 import static com.example.account.type.TransactionType.CANCEL;
 import static com.example.account.type.TransactionType.USE;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor

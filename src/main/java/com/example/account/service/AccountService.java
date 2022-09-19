@@ -19,6 +19,11 @@ import java.util.stream.Collectors;
 
 import static com.example.account.type.AccountStatus.IN_USE;
 
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
+
 @Service
 @RequiredArgsConstructor
 public class AccountService {
@@ -29,28 +34,23 @@ public class AccountService {
      * //사용자가 있는지 조회
      * // 계좌의 번호를 생성하고
      * // 계좌를 저장하고, 그정보를 넘긴다.
-     * / ** enter하면 만들어짐.
+     *
      */
     @Transactional
     public AccountDto createAccount(Long userId, Long initialBalance) {
         AccountUser accountUser = getAccountUser(userId);
 
         validateCreateAccount(accountUser);
-        //max 10개 제한 막는 로직
 
 
         String newAccountNumber = accountRepository.findFirstByOrderByIdDesc()
                 .map(account -> (Integer.parseInt(account.getAccountNumber())) + 1 + "")
-                // 가장 최근 계좌 -> number를 받아서 문자를 숫자로 변환 해서 1을 더해주고, 다시 String으로 변환
                 .orElse("1000000000");
-        //현재 계좌가 없으면....
-        //optional 사용해보기
         return AccountDto.fromEntity(
                 accountRepository.save(
                         Account.builder()
                                 .accountUser(accountUser)
                                 .accountStatus(IN_USE)
-                                //static import enum namespace 굳이 볼필요 없으니깐
                                 .accountNumber(newAccountNumber)
                                 .balance(initialBalance)
                                 .registeredAt(LocalDateTime.now())
@@ -118,7 +118,6 @@ public class AccountService {
                 //.map(account -> AccountDto.fromEntity(account))
                 .collect(Collectors.toList());
 
-        //fromEntity 메소드 역활 뭔지 보기, 쟤 덕분에 map에 넣을수 있음.
     }
 
 

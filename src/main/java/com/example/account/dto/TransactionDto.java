@@ -6,7 +6,10 @@ import com.example.account.type.TransactionType;
 import lombok.*;
 
 import java.time.LocalDateTime;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Getter
 @Setter
 @Builder

@@ -2,7 +2,6 @@ package com.example.account.exception;
 
 
 import com.example.account.dto.ErrorResponse;
-import com.example.account.type.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,7 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static com.example.account.type.ErrorCode.INTERNAL_SERVER_ERROR;
 import static com.example.account.type.ErrorCode.INVALID_REQUEST;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

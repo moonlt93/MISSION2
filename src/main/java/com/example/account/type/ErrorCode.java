@@ -3,7 +3,10 @@ package com.example.account.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {

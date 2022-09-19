@@ -12,20 +12,16 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*
- *  exception  catch를 다 try -catch 로 엮을수 있겠지만
- *  코드 유지보수가 어려움.
- * */
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
 
-    /*   @GetMapping("/get-lock")
-       public String getLock() {
-           return redisTestService.getLock();
-       }
-   */
+
     @PostMapping("/account")
     public CreateAccount.Response createAccount(
             @RequestBody @Valid CreateAccount.Request request

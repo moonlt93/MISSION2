@@ -28,24 +28,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+/**
+ * @writer 제로베이스 3기 문진수
+ *
+ */
 @WebMvcTest(AccountController.class)
 class AccountControllerTest {
     @MockBean
     private AccountService accountService;
 
- /*   @MockBean
-    private RedisTestService redisTestService;*/
+
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
-    //얘네 역활 확인
-    //jackson Object Mapper
-    //content => 요청 json객체를 어떻게 만들어서 test 할 것인가
-    // 문자열 고대로 넣는 방법, ObjectMapper 사용해서 문자열 변환
+
 
     @Test
     void successCreateAccount() throws Exception {
