@@ -11,16 +11,16 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-// 완전 그냥 쿼리네
-Optional<Account> findFirstByOrderByIdDesc();
+    // 완전 그냥 쿼리네
+    Optional<Account> findFirstByOrderByIdDesc();
 
 
-Integer countByAccountUser(AccountUser user);
+    Integer countByAccountUser(AccountUser user);
 
-  Optional<Account> findByAccountNumber(String accountNumber);
+    Optional<Account> findByAccountNumber(String accountNumber);
 
 
-  List<Account> findByAccountUser(AccountUser accountUser);
+    List<Account> findByAccountUser(AccountUser accountUser);
 
-  //JPA 관련 기능인데 제너릭 클래스에 인수를 받을 변수가 없으면 자동으로 같은 이름으로 생성해준다고 함.
+    //JPA 관련 기능인데 제너릭 클래스에 인수를 받을 변수가 없으면 자동으로 같은 이름으로 생성해준다고 함.
 }

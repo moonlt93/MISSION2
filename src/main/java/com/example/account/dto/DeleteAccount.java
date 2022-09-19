@@ -13,7 +13,6 @@ public class DeleteAccount {
     @Setter
     @Getter
     @AllArgsConstructor
-    //innerclass네?
     public static class Request {
         @NotNull
         @Min(1)
@@ -21,7 +20,6 @@ public class DeleteAccount {
 
         @NotBlank
         @Size(min=10,max=10)
-       //문자열 길이 판단
         private String accountNumber;
 
 
@@ -32,7 +30,6 @@ public class DeleteAccount {
     @Builder
     @Setter
     @Getter
-    //innerclass네?
     public static class Response {
         private Long userId;
         private String accountNumber;

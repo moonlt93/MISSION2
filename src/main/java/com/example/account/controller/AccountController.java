@@ -13,19 +13,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /*
-*  exception  catch를 다 try -catch 로 엮을수 있겠지만
-*  코드 유지보수가 어려움.
-* */
+ *  exception  catch를 다 try -catch 로 엮을수 있겠지만
+ *  코드 유지보수가 어려움.
+ * */
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
 
- /*   @GetMapping("/get-lock")
-    public String getLock() {
-        return redisTestService.getLock();
-    }
-*/
+    /*   @GetMapping("/get-lock")
+       public String getLock() {
+           return redisTestService.getLock();
+       }
+   */
     @PostMapping("/account")
     public CreateAccount.Response createAccount(
             @RequestBody @Valid CreateAccount.Request request

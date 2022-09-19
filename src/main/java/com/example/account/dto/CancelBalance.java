@@ -8,26 +8,17 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 public class CancelBalance {
-    /**
-     * {
-     *   "transactionId": "wefsdf",
-     *   "accountNumber": 1000
-     *   "amount": 1000
-     * }
-     */
-
 
     @Setter
     @Getter
     @AllArgsConstructor
-    //innerclass네?
     public static class Request implements AccountLockIdInterface {
 
         @NotBlank
         private String transactionId;
 
         @NotNull
-        @Size(min =10, max =10)
+        @Size(min = 10, max = 10)
         private String accountNumber;
 
         @NotNull

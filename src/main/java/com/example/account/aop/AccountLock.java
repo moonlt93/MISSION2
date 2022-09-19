@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AccountLock {
 
-    long tryLockTime() default  5000L;
+    long tryLockTime() default 5000L;
 
 
 }

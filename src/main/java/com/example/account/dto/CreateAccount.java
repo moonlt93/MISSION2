@@ -11,7 +11,6 @@ public class CreateAccount {
     @Setter
     @Getter
     @AllArgsConstructor
-    //innerclass네?
     public static class Request {
         @NotNull
         @Min(1)
@@ -28,23 +27,23 @@ public class CreateAccount {
     @Builder
     @Setter
     @Getter
-    //innerclass네?
     public static class Response {
         private Long userId;
         private String accountNumber;
         private LocalDateTime registeredAt;
 
-     public static Response from (AccountDto dto){
-         return Response.builder()
-                 .userId(dto.getUserId())
-                 .accountNumber(dto.getAccountNumber())
-                 .registeredAt(dto.getRegisteredAt())
-                 .build();
-     };
+        public static Response from(AccountDto dto) {
+            return Response.builder()
+                    .userId(dto.getUserId())
+                    .accountNumber(dto.getAccountNumber())
+                    .registeredAt(dto.getRegisteredAt())
+                    .build();
+        }
+
+        ;
 
 
     }
-
 
 
 }

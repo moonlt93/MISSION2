@@ -18,38 +18,38 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(AccountException.class)
-    public ErrorResponse handleAccountException(AccountException e){
+    public ErrorResponse handleAccountException(AccountException e) {
 
-        log.error("{} is occurred",e.getErrorCode());
+        log.error("{} is occurred", e.getErrorCode());
 
-        return new ErrorResponse(e.getErrorCode(),e.getErrorMessage());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
 
 
-  @ExceptionHandler(DataIntegrityViolationException.class)
-  public ErrorResponse handleDataIntegrityViolationException(DataIntegrityViolationException e){
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ErrorResponse handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         log.error("DataIntegrityViolationException is occurred.", e);
 
         return new ErrorResponse(INVALID_REQUEST, INVALID_REQUEST.getDescription());
 
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorResponse MethodArgumentNotValidException(MethodArgumentNotValidException e){
+    public ErrorResponse MethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException is occurred.", e);
 
         return new ErrorResponse(INVALID_REQUEST, INVALID_REQUEST.getDescription());
 
     }
 
-@ExceptionHandler(Exception.class)
-  public ErrorResponse handleAccountException(Exception e){
+    @ExceptionHandler(Exception.class)
+    public ErrorResponse handleAccountException(Exception e) {
 
-        log.error("Exception is occurred",e);
+        log.error("Exception is occurred", e);
 
         return new ErrorResponse(INTERNAL_SERVER_ERROR
-                ,INTERNAL_SERVER_ERROR.getDescription());
+                , INTERNAL_SERVER_ERROR.getDescription());
     }
-
 
 
 }

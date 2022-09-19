@@ -14,7 +14,6 @@ public class UseBalance {
     @Setter
     @Getter
     @AllArgsConstructor
-    //innerclass네?
     public static class Request implements AccountLockIdInterface {
         @NotNull
         @Min(1)
@@ -38,7 +37,6 @@ public class UseBalance {
     @Builder
     @Setter
     @Getter
-    //innerclass네?
     public static class Response {
         private String accountNumber;
         private TransactionResultType transactionResult;
