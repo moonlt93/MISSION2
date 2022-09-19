@@ -405,7 +405,7 @@ class TransactionServiceTest {
 
         //then
         assertEquals(ErrorCode.TRANSACTION_ACCOUNT_UN_MATCH, exception.getErrorCode());
-//
+
     }
 
 
@@ -445,7 +445,7 @@ class TransactionServiceTest {
 
         //then
         assertEquals(ErrorCode.CANCEL_MUST_FULLY, exception.getErrorCode());
-//
+
     }
 
     @Test
@@ -484,7 +484,7 @@ class TransactionServiceTest {
 
         //then
         assertEquals(ErrorCode.TOO_OLD_ORDER_TO_CANCEL, exception.getErrorCode());
-//
+
     }
 
     @Test

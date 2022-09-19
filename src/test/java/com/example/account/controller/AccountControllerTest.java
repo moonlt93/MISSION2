@@ -67,7 +67,7 @@ class AccountControllerTest {
                 )))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userId").value(1))
-                .andExpect(jsonPath("$.accountNumber").value("123456789"))
+                .andExpect(jsonPath("$.accountNumber").value("12345678"))
                 .andDo(print());
 
     }
